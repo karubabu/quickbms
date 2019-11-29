@@ -8,23 +8,23 @@ _stonecracker403:
 
 
 #;;   movem.l   d3-d7/a2-a3,-(sp)      # [35]
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
 #;;   beq.s     l0                     # [37]
 	je       l0
 #;;   movem.l   (sp)+,d3-d7/a2-a3      # [38]
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
 #;;   moveq     #0,d0                  # [39]
 	movl     $0,%ebx
 #;;   rts                              # [40]
@@ -113,13 +113,13 @@ l2:
 	jc       l1
 lexit:
 #;;   movem.l   (sp)+,d3-d7/a2-a3      # [59]
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
 #;;   moveq     #1,d0                  # [60]
 	movl     $1,%ebx
 #;;   rts                              # [61]
@@ -345,13 +345,13 @@ l5_2:
 #;;   blo       l1                     # [94]
 	jc       l1
 #;;   movem.l   (sp)+,d3-d7/a2-a3      # [95]
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
 #;;   moveq     #1,d0                  # [96]
 	movl     $1,%ebx
 #;;   rts                              # [97]

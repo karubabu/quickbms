@@ -106,7 +106,7 @@ _LhDecode:
 #;;   move.l    #4534,d0               # [54]
 	movl     $4534,%ebx
 #;;   bsr.w     alcmemj                # [55 (EQ)]
-    push %ebx
+    push ebx
 	call     _malloc
 #;;   beq.b     lhdecoo                # [56]
 	je       LHDECOO
@@ -116,16 +116,16 @@ _LhDecode:
 	lea      -4(%esp),%esp
 	movl     $0,(%esp)
 #;;   move.l    d0,-(sp)               # [60]
-	pushl    %ebx
+	push    ebx
 #;;   clr.l     -(sp)                  # [62]
 	lea      -4(%esp),%esp
 	movl     $0,(%esp)
 #;;   move.l    a1,-(sp)               # [63]
-	pushl    %edi
+	push    edi
 #;;   move.l    d1,-(sp)               # [65]
-	pushl    %edx
+	push    edx
 #;;   move.l    a0,-(sp)               # [66]
-	pushl    %esi
+	push    esi
 #;;   move.l    sp,a0                  # [68]
 	movl     %esp,%esi
 #;;   bsr.b     lhdec                  # [72]
@@ -135,7 +135,7 @@ _LhDecode:
 #;;   move.l    d7,a1                  # [75]
 	movl     d7_l,%edi
 #;;   bsr.w     frememj                # [76]
-    push %edi
+    push edi
 	call     _free
 LHDECOO:
 #;;   tst.l     d0                     # [78]
@@ -144,20 +144,20 @@ LHDECOO:
 	ret      
 LHDEC:
 #;;   movem.l   d1-d7/a0-a6,-(sp)      # [83]
-	pushl    %ebp
-	pushl    a5_l
-	pushl    a4_l
-	pushl    a3_l
-	pushl    a2_l
-	pushl    %edi
-	pushl    %esi
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
-	pushl    %edx
+	push    ebp
+	push    a5_l
+	push    a4_l
+	push    a3_l
+	push    a2_l
+	push    edi
+	push    esi
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
+	push    edx
 #;;   move.l    d0,a2                  # [84]
 	movl     %ebx,a2_l
 #;;   move.w    d5,4532(a2)            # [85]
@@ -165,38 +165,38 @@ LHDEC:
 	movl     a2_l,%ecx
 	movw     %ax,4532(%ecx)
 #;;   pea       (a0)                   # [86]
-	pushl    %esi
+	push    esi
 #;;   bsr.b     lhdec1                 # [87]
 	call     LHDEC1
 #;;   move.l    a1,d0                  # [88]
 	movl     %edi,%ebx
 #;;   move.l    (sp)+,a0               # [89]
-	popl     %esi
+	pop     esi
 #;;   sub.l     8(a0),d0               # [90]
 	subl     8(%esi),%ebx
 #;;   move.l    d0,12(a0)              # [91]
 	movl     %ebx,12(%esi)
 #;;   movem.l   (sp)+,d1-d7/a0-a6      # [92]
-	popl     %edx
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     %esi
-	popl     %edi
-	popl     a2_l
-	popl     a3_l
-	popl     a4_l
-	popl     a5_l
-	popl     %ebp
+	pop     edx
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     esi
+	pop     edi
+	pop     a2_l
+	pop     a3_l
+	pop     a4_l
+	pop     a5_l
+	pop     ebp
 #;;   rts                              # [93]
     movl %ebx,%eax
 	ret      
 LHDEC1:
 #;;   pea       (a0)                   # [95]
-	pushl    %esi
+	push    esi
 #;;   move.l    16(a0),a6              # [96]
 	movl     16(%esi),%ebp
 #;;   move.l    a6,a0                  # [97]
@@ -293,7 +293,7 @@ LHDEC3:
 #;;   clr.w     $c5e(a6)               # [132]
 	movw     $0,0xc5e(%ebp)
 #;;   move.l    (sp)+,a5               # [133]
-	popl     a5_l
+	pop     a5_l
 #;;   move.l    (a5),a0                # [134]
 	movl     a5_l,%ecx
 	movl     (%ecx),%esi
@@ -362,7 +362,7 @@ LHDEC7:
 	lea      -1(%ecx),%cx
 	movw     %cx,d5_w
 	lea      1(%ecx),%cx
-	jcxz     _PA_120_
+	jecxz     _PA_120_
 	jmp      LHDEC7
 _PA_120_:         
 #;;   bmi.b     lhdec10                # [157]
@@ -388,7 +388,7 @@ LHDEC9:
 	lea      -1(%ecx),%cx
 	movw     %cx,d5_w
 	lea      1(%ecx),%cx
-	jcxz     _PA_126_
+	jecxz     _PA_126_
 	jmp      LHDEC7
 _PA_126_:         
 #;;   bpl.b     lhdec8                 # [165]
@@ -588,7 +588,7 @@ LHDEC20:
 	movw     d3_w,%ax
 	addw     %ax,d3_w
 #;;   move.l    a0,-(sp)               # [232]
-	pushl    %esi
+	push    esi
 #;;   lea       lhtab,a0               # [233]
 	movl     $LHTAB,%esi
 #;;   move.w    (a0,d3.w),d3           # [234]
@@ -596,7 +596,7 @@ LHDEC20:
 	movw     0(%esi,%ecx),%ax
 	movw     %ax,d3_w
 #;;   move.l    (sp)+,a0               # [235]
-	popl     %esi
+	pop     esi
 #;;   clr.w     d2                     # [236]
 	movw     $0,d2_w
 #;;   move.b    d3,d2                  # [237]

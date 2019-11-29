@@ -145,7 +145,7 @@ fill_probs:
 	movl     %eax,a2_l
 depack_loop:
 #;;   move.l    d2,-(a7)               # [66]
-	pushl    d2_l
+	push    d2_l
 #;;   lea       (a6),a1                # [67]
 	movl     %ebp,%edi
 #;;   move.l    d4,d0                  # [68]
@@ -585,7 +585,7 @@ Copy_Rem_Bytes:
 	jne      Copy_Rem_Bytes
 cont:
 #;;   move.l    (a7)+,d2               # [250]
-	popl     d2_l
+	pop     d2_l
 #;;   cmp.l     d2,a2                  # [251 MI]
 	movl     d2_l,%eax
 	cmpl     %eax,a2_l
@@ -627,7 +627,7 @@ Check_Fix_Range:
 #;;   lsr.l     #3,d0                  # [265]
 	shrl     $3,%ebx
 #;;   move.l    d1,-(a7)               # [266]
-	pushl    %edx
+	push    edx
 #;;   move.l    d0,d1                  # [267]
 	movl     %ebx,%edx
 #;;   swap      d1                     # [268]
@@ -645,7 +645,7 @@ Check_Fix_Range:
 #;;   add.l     d1,d0                  # [272]
 	addl     %edx,%ebx
 #;;   move.l    (a7)+,d1               # [273]
-	popl     %edx
+	pop     edx
 #;;   cmp.l     d5,d0                  # [274 LS]
 	cmpl     d5_l,%ebx
 #;;   bls.b     Range_Lower            # [275]

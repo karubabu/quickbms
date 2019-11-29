@@ -305,7 +305,7 @@ ISC2P6:
 	movswl   %dx,%ecx
 	addl     a3_l,%ecx
 	lea      0(%ecx),%eax
-	jmp      *%eax
+	jmp      *eax
 ISC2P7:
 #;;   bra.b     isc2p5                 # [128]
 	jmp      ISC2P5
@@ -579,7 +579,7 @@ _ISC3P:
     
 
 #;;   move.l    a4,-(sp)               # [251]
-	pushl    a4_l
+	push    a4_l
 #;;   move.l    UI_CrunchAdrTemp,a6    # [252]
 	movl     UI_CrunchAdrTemp,%ebp
 #;;   move.l    UI_CrunchLenTemp,d0    # [253]
@@ -669,7 +669,7 @@ ISC3P4:
 	jmp      ISC3P1
 ISC3P5:
 #;;   move.l    (sp)+,a4               # [288]
-	popl     a4_l
+	pop     a4_l
 #;;   rts                              # [289]
     movl d7_l,%eax
 	ret      

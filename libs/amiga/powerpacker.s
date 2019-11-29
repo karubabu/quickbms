@@ -20,33 +20,33 @@ _pp_DecrunchBuffer:
 #;;   move.l    12(a7),d0              # [4]
 	movl     12(%esp),%ebx
 #;;   movem.l   d1-d7/a2-a6,-(a7)      # [5]
-	pushl    %ebp
-	pushl    a5_l
-	pushl    a4_l
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
-	pushl    %edx
+	push    ebp
+	push    a5_l
+	push    a4_l
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
+	push    edx
 #;;   bsr.s     Decrunch               # [6]
 	call     Decrunch
 #;;   movem.l   (a7)+,d1-d7/a2-a6      # [7]
-	popl     %edx
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
-	popl     a4_l
-	popl     a5_l
-	popl     %ebp
+	pop     edx
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
+	pop     a4_l
+	pop     a5_l
+	pop     ebp
 #;;   rts                              # [8]
 	ret      
 Decrunch:
@@ -284,7 +284,7 @@ _pp_Decrypt:
 #;;   move.l    12(a7),d0              # [124]
 	movl     12(%esp),%ebx
 #;;   move.l    d2,-(a7)               # [125]
-	pushl    d2_l
+	push    d2_l
 #;;   addq.l    #3,d1                  # [126]
 	addl     $3,%edx
 #;;   lsr.l     #2,d1                  # [127]
@@ -306,6 +306,6 @@ encryptloop:
 	cmpw     $-1,%dx
 	jne      encryptloop
 #;;   move.l    (a7)+,d2               # [134]
-	popl     d2_l
+	pop     d2_l
 #;;   rts                              # [135]
 	ret      

@@ -18,7 +18,7 @@ _UPHD:
     movl %eax,a2_l
 
 #;;   move.l    a4,-(sp)               # [12]
-	pushl    a4_l
+	push    a4_l
 #;;   addq.l    #8,a0                  # [13]
 	lea      8(%esi),%esi
 #;;   moveq     #0,d6                  # [14]
@@ -49,9 +49,9 @@ UPHD1:
 	jne      UPHD5
 UPHD2:
 #;;   movem.l   a3-a5,-(sp)            # [25]
-	pushl    a5_l
-	pushl    a4_l
-	pushl    a3_l
+	push    a5_l
+	push    a4_l
+	push    a3_l
 #;;   lea       -$4c4(a2),a5           # [26]
 	movl     a2_l,%ecx
 	lea      -0x4c4(%ecx),%eax
@@ -115,9 +115,9 @@ UPHD4:
 	cmpw     $-1,%dx
 	jne      UPHD4
 #;;   movem.l   (sp)+,a3-a5            # [46]
-	popl     a3_l
-	popl     a4_l
-	popl     a5_l
+	pop     a3_l
+	pop     a4_l
+	pop     a5_l
 #;;   bra.b     uphd10                 # [47]
 	jmp      UPHD10
 UPHD5:
@@ -256,7 +256,7 @@ UPHD14:
 	jmp      UPHD1
 UPHD15:
 #;;   move.l    (sp)+,a4               # [95]
-	popl     a4_l
+	pop     a4_l
 #;;   rts                              # [96]
 	ret      
 UPHD16:

@@ -15,7 +15,7 @@ _TRY101:
 #;;   move.l    #1056,d0               # [5]
 	movl     $1056,%ebx
 #;;   bsr.w     alcmemj                # [6]
-    push %ebx
+    push ebx
 	call     _malloc
 #;;   move.l    d0,UI_Temp(a4)         # [7 EQ]
 	movl     a4_l,%ecx
@@ -52,7 +52,7 @@ TRYIT1:
 	movl     a4_l,%ecx
 	movl     UI_Temp,%edi
 #;;   bsr.w     frememj                # [22]
-    push %edi
+    push edi
 	call     _free
 #;;   clr.l     UI_Temp(a4)            # [23]
 	movl     a4_l,%ecx

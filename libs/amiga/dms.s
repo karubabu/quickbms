@@ -271,11 +271,11 @@ _DMSUNP:
 
 
 #;;   movem.l   d5-d7/a2-a3,-(sp)      # [132]
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
 #;;   moveq     #UERR_Corrupt,d7       # [133]
 	movl     $-1,d7_l
 #;;   move.l    a0,a3                  # [134]
@@ -321,7 +321,7 @@ _DMSUNP:
 #;;   jmp       dmsjtab(pc,d0.w)       # [151]
 	movswl   %bx,%ecx
 	lea      DMSJTAB(%ecx),%eax
-	jmp      *%eax
+	jmp      *eax
 DMSUE1:
 #;;   move.l    d6,d0                  # [158]
 	movl     d6_l,%ebx
@@ -496,8 +496,8 @@ DMSUE7:
 	jmp      DMSUNO
 DMSUS1:
 #;;   movem.l   d0/d2,-(sp)            # [255]
-	pushl    d2_l
-	pushl    %ebx
+	push    d2_l
+	push    ebx
 #;;   subq.l    #1,d0                  # [256]
 	subl     $1,%ebx
 #;;   moveq     #0,d1                  # [257]
@@ -521,17 +521,17 @@ DMSUS1a:
 	movl     a5_l,%ecx
 	movw     %dx,Dms_Chk(%ecx)
 #;;   movem.l   (sp)+,d0/d2            # [264]
-	popl     %ebx
-	popl     d2_l
+	pop     ebx
+	pop     d2_l
 #;;   rts                              # [265]
 	ret      
 DMSUS2:
 #;;   movem.l   d2-d3/a2,-(sp)         # [268]
-	pushl    a2_l
-	pushl    d3_l
-	pushl    d2_l
+	push    a2_l
+	push    d3_l
+	push    d2_l
 #;;   move.l    a1,-(sp)               # [269]
-	pushl    %edi
+	push    edi
 #;;   lea       (a0,d0.l),a2           # [270]
 	lea      0(%esi,%ebx),%eax
 #;;   move.b    #$90,d2                # [271]
@@ -633,23 +633,23 @@ DMSUS2g:
 	subl     (%esp),%ebx
 	lea      4(%esp),%esp
 #;;   movem.l   (sp)+,d2-d3/a2         # [312]
-	popl     d2_l
-	popl     d3_l
-	popl     a2_l
+	pop     d2_l
+	pop     d3_l
+	pop     a2_l
 #;;   rts                              # [313]
 	ret      
 DMSUS3:
 #;;   movem.l   d2-d7/a2-a3,-(sp)      # [316]
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
 #;;   move.l    a5,-(sp)               # [317]
-	pushl    a5_l
+	push    a5_l
 #;;   lea       (a1,d1.l),a3           # [318]
 	lea      0(%edi,%edx),%eax
 #;;   move.l    Dms_VMem(a5),a2        # [319]
@@ -889,32 +889,32 @@ DMSUS3o:
 #;;   move.l    a1,d0                  # [407]
 	movl     %edi,%ebx
 #;;   move.l    (sp)+,a5               # [408]
-	popl     a5_l
+	pop     a5_l
 #;;   movem.l   (sp)+,d2-d7/a2-a3      # [409]
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
 #;;   rts                              # [410]
 	movl %ebx,%eax
 	ret      
 DMSUS4:
 #;;   movem.l   d2-d7/a2-a3/a6,-(sp)   # [413]
-	pushl    %ebp
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
+	push    ebp
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
 #;;   move.l    a5,-(sp)               # [414]
-	pushl    a5_l
+	push    a5_l
 #;;   lea       (a1,d1.l),a3           # [415]
 	lea      0(%edi,%edx),%eax
 #;;   move.l    Dms_VMem(a5),a2        # [416]
@@ -1212,32 +1212,32 @@ DMSUS4q:
 #;;   move.l    a1,d0                  # [529]
 	movl     %edi,%ebx
 #;;   move.l    (sp)+,a5               # [530]
-	popl     a5_l
+	pop     a5_l
 #;;   movem.l   (sp)+,d2-d7/a2-a3/a6   # [531]
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
-	popl     %ebp
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
+	pop     ebp
 #;;   rts                              # [532]
 	movl %ebx,%eax
 	ret      
 DMSUS5:
 #;;   movem.l   d2-d7/a2-a3,-(sp)      # [535]
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
 #;;   move.l    a5,-(sp)               # [536]
-	pushl    a5_l
+	push    a5_l
 #;;   lea       (a1,d1.l),a3           # [537]
 	lea      0(%edi,%edx),%eax
 #;;   move.l    Dms_VMem(a5),a2        # [538]
@@ -1252,13 +1252,13 @@ DMSUS5:
 #;;   bne.b     dmsus5b                # [541]
 	jne      DMSUS5b
 #;;   movem.l   a0-a1,-(sp)            # [542]
-	pushl    %edi
-	pushl    %esi
+	push    edi
+	push    esi
 #;;   bsr.w     dmsus6                 # [543]
 	call     DMSUS6
 #;;   movem.l   (sp)+,a0-a1            # [544]
-	popl     %esi
-	popl     %edi
+	pop     esi
+	pop     edi
 #;;   move.w    #1,Dms_Flag(a5)        # [545]
 	movl     a5_l,%ecx
 	movw     $1,Dms_Flag(%ecx)
@@ -1300,7 +1300,7 @@ DMSUS5c:
 	jne      DMSUS5c
 DMSUS5d:
 #;;   move.l    a1,-(sp)               # [560]
-	pushl    %edi
+	push    edi
 #;;   moveq     #0,d6                  # [561]
 	movl     $0,d6_l
 DMSUS5e:
@@ -1362,13 +1362,13 @@ DMSUS5h:
 #;;   move.l    d3,d0                  # [583]
 	movl     d3_l,%ebx
 #;;   movem.l   a0-a1,-(sp)            # [584]
-	pushl    %edi
-	pushl    %esi
+	push    edi
+	push    esi
 #;;   bsr.w     dmsus7                 # [585]
 	call     DMSUS7
 #;;   movem.l   (sp)+,a0-a1            # [586]
-	popl     %esi
-	popl     %edi
+	pop     esi
+	pop     edi
 #;;   cmp.w     #$100,d3               # [587 GE]
 	cmpw     $0x100,d3_w
 #;;   bge.b     dmsus5i                # [588]
@@ -1521,31 +1521,31 @@ DMSUS5o:
 #;;   move.l    a1,d0                  # [644]
 	movl     %edi,%ebx
 #;;   move.l    (sp)+,a5               # [645]
-	popl     a5_l
+	pop     a5_l
 #;;   movem.l   (sp)+,d2-d7/a2-a3      # [646]
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
 #;;   rts                              # [647]
 	movl %ebx,%eax
 	ret      
 DMSUS6:
 #;;   link      a5,#-16                # [650]
-	pushl    a5_l
+	push    a5_l
 	movl     %esp,a5_l
 	lea      (-16)(%esp),%esp
 #;;   movem.l   d2-d3/d6-d7/a2-a3,-(sp) # [651]
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d3_l
-	pushl    d2_l
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d3_l
+	push    d2_l
 #;;   move.l    Temp1(a4),a2        # [652]
 	movl     a4_l,%ecx
 	movl     UI_Temp1,%eax
@@ -1682,29 +1682,29 @@ DMSUS6d:
 #;;   clr.w     $4e4(a0)               # [703]
 	movw     $0,0x4e4(%esi)
 #;;   movem.l   (sp)+,d2-d3/d6-d7/a2-a3 # [704]
-	popl     d2_l
-	popl     d3_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
+	pop     d2_l
+	pop     d3_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
 #;;   unlk      a5                     # [705]
 	movl     a5_l,%esp
-	popl     a5_l
+	pop     a5_l
 #;;   rts                              # [706]
 	ret      
 DMSUS7:
 #;;   link      a5,#-$18               # [709]
-	pushl    a5_l
+	push    a5_l
 	movl     %esp,a5_l
 	lea      (-0x18)(%esp),%esp
 #;;   movem.l   d4-d7/a2-a3,-(sp)      # [710]
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
 #;;   move.l    d0,-$18(a5)            # [711]
 	movl     a5_l,%ecx
 	movl     %ebx,-0x18(%ecx)
@@ -1901,31 +1901,31 @@ DMSUS7f:
 #;;   bne.w     dmsus7b                # [786]
 	jne      DMSUS7b
 #;;   movem.l   (sp)+,d4-d7/a2-a3      # [787]
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
 #;;   unlk      a5                     # [788]
 	movl     a5_l,%esp
-	popl     a5_l
+	pop     a5_l
 #;;   rts                              # [789]
 	ret      
 DMSUS8:
 #;;   link      a5,#-$18               # [792]
-	pushl    a5_l
+	push    a5_l
 	movl     %esp,a5_l
 	lea      (-0x18)(%esp),%esp
 #;;   movem.l   d2-d7/a2-a3,-(sp)      # [793]
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
 #;;   move.l    UI_Temp1(a4),a2        # [794]
 	movl     a4_l,%ecx
 	movl     UI_Temp1,%eax
@@ -2197,32 +2197,32 @@ DMSUS8m:
 	jmp      DMSUS8l
 DMSUS8n:
 #;;   movem.l   (sp)+,d2-d7/a2-a3      # [904]
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
 #;;   unlk      a5                     # [905]
 	movl     a5_l,%esp
-	popl     a5_l
+	pop     a5_l
 #;;   rts                              # [906]
 	ret      
 DMSUS9:
 #;;   movem.l   d2-d7/a2-a6,-(sp)      # [909]
-	pushl    %ebp
-	pushl    a5_l
-	pushl    a4_l
-	pushl    a3_l
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
+	push    ebp
+	push    a5_l
+	push    a4_l
+	push    a3_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
 #;;   move.l    a1,a6                  # [910]
 	movl     %edi,%ebp
 #;;   lea       (a6,d1.l),a3           # [911]
@@ -2749,7 +2749,7 @@ DMSUS9v:
 	movw     Dms_Cou3(%esi),%ax
 	movw     %ax,d4_w
 #;;   move.l    a6,-(sp)               # [1115]
-	pushl    %ebp
+	push    ebp
 DMSUS9w:
 #;;   cmp.l     a3,a6                  # [1117 GE]
 	cmpl     a3_l,%ebp
@@ -3102,7 +3102,7 @@ DMSS910:
 	movw     %ax,d2_w
 DMSS911:
 #;;   move.l    a2,-(sp)               # [1252]
-	pushl    a2_l
+	push    a2_l
 #;;   move.l    UI_Temp1(a4),a2        # [1253]
 	movl     a4_l,%ecx
 	movl     UI_Temp1,%eax
@@ -3112,7 +3112,7 @@ DMSS911:
 	movw     Dms_Bit2(%ecx),%ax
 	cmpw     %ax,d2_w
 #;;   move.l    (sp)+,a2               # [1255]
-	popl     a2_l
+	pop     a2_l
 #;;   bge.b     dmsus99                # [1256]
 	jge      DMSUS99
 #;;   move.l    UI_Temp1(a4),a0        # [1258]
@@ -3296,31 +3296,31 @@ DMSS919:
 #;;   move.l    a6,d0                  # [1328]
 	movl     %ebp,%ebx
 #;;   movem.l   (sp)+,d2-d7/a2-a6      # [1329]
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
-	popl     a4_l
-	popl     a5_l
-	popl     %ebp
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
+	pop     a4_l
+	pop     a5_l
+	pop     ebp
 #;;   rts                              # [1330]
 	movl %ebx,%eax
 	ret      
 DMSUS10:
 #;;   link      a5,#-8                 # [1333]
-	pushl    a5_l
+	push    a5_l
 	movl     %esp,a5_l
 	lea      (-8)(%esp),%esp
 #;;   movem.l   d2-d3/d6-d7/a2,-(sp)   # [1334]
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d3_l
-	pushl    d2_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d3_l
+	push    d2_l
 #;;   move.l    UI_Temp1(a4),a2        # [1335]
 	movl     a4_l,%ecx
 	movl     UI_Temp1,%eax
@@ -3393,24 +3393,24 @@ DMSS10a:
 #;;   bsr.b     dmsus11                # [1360]
 	call     DMSUS11
 #;;   movem.l   (sp)+,d2-d3/d6-d7/a2   # [1361]
-	popl     d2_l
-	popl     d3_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
+	pop     d2_l
+	pop     d3_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
 #;;   unlk      a5                     # [1362]
 	movl     a5_l,%esp
-	popl     a5_l
+	pop     a5_l
 #;;   rts                              # [1363]
 	movl %ebx,%eax
 	ret      
 DMSUS11:
 #;;   link      a5,#-4                 # [1366]
-	pushl    a5_l
+	push    a5_l
 	movl     %esp,a5_l
 	lea      (-4)(%esp),%esp
 #;;   move.l    d7,-(sp)               # [1367]
-	pushl    d7_l
+	push    d7_l
 #;;   move.l    UI_Temp1(a4),a2        # [1368]
 	movl     a4_l,%ecx
 	movl     UI_Temp1,%eax
@@ -3592,10 +3592,10 @@ DMSS11g:
 	movl     d7_l,%ebx
 DMSS11h:
 #;;   move.l    (sp)+,d7               # [1449]
-	popl     d7_l
+	pop     d7_l
 #;;   unlk      a5                     # [1450]
 	movl     a5_l,%esp
-	popl     a5_l
+	pop     a5_l
 #;;   rts                              # [1451]
 	movl %ebx,%eax
 	ret      
@@ -3612,11 +3612,11 @@ DMSUNO:
 #;;   move.l    d7,d0                  # [1462]
 	movl     d7_l,%ebx
 #;;   movem.l   (sp)+,d5-d7/a2-a3      # [1463]
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
-	popl     a3_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
+	pop     a3_l
 #;;   rts                              # [1464]
 	movl %ebx,%eax
 	ret      

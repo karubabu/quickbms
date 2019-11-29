@@ -14,7 +14,7 @@ _IAMATM:
 
 
 #;;   link      a2,#-$1c               # [9]
-	pushl    a2_l
+	push    a2_l
 	movl     %esp,a2_l
 	lea      (-0x1c)(%esp),%esp
 #;;   addq.l    #4,a0                  # [10]
@@ -25,7 +25,7 @@ _IAMATM:
 #;;   lea       4(a0,d0.l),a5          # [12]
 	lea      4(%esi,%ebx),%eax
 #;;   move.l    d0,-(sp)               # [13]
-	pushl    %ebx
+	push    ebx
 #;;   move.l    a5,a4                  # [14]
 	movl     %eax,a4_l
 #;;   lea       -12(a4),a4             # [15]
@@ -62,7 +62,7 @@ IAMATM3:
 	lea      -1(%ecx),%cx
 	movw     %cx,d5_w
 	lea      1(%ecx),%cx
-	jcxz     _PA_15_
+	jecxz     _PA_15_
 	jmp      IAMATM2
 _PA_15_:         
 #;;   beq.b     iamatm6                # [26]
@@ -480,7 +480,7 @@ IAMAT39:
 	jmp      IAMAT29
 IAMAT40:
 #;;   move.l    (sp)+,d0               # [182]
-	popl     %ebx
+	pop     ebx
 #;;   lsr.l     #4,d0                  # [183]
 	shrl     $4,%ebx
 #;;   lea       -12(a6),a6             # [184]
@@ -507,7 +507,7 @@ IAMAT41:
 	jne      IAMAT41
 #;;   unlk      a2                     # [190]
 	movl     a2_l,%esp
-	popl     a2_l
+	pop     a2_l
 #;;   rts                              # [191]
 	ret      
 	.data
@@ -539,25 +539,25 @@ _IAMICE:
     
 
 #;;   link      a3,#-$78               # [203]
-	pushl    a3_l
+	push    a3_l
 	movl     %esp,a3_l
 	lea      (-0x78)(%esp),%esp
 #;;   movem.l   d0-d7/a0-a6,-(sp)      # [204]
-	pushl    %ebp
-	pushl    a5_l
-	pushl    a4_l
-	pushl    a3_l
-	pushl    a2_l
-	pushl    %edi
-	pushl    %esi
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
-	pushl    %edx
-	pushl    %ebx
+	push    ebp
+	push    a5_l
+	push    a4_l
+	push    a3_l
+	push    a2_l
+	push    edi
+	push    esi
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
+	push    edx
+	push    ebx
 #;;   lea       $78(a0),a4             # [205]
 	lea      0x78(%esi),%eax
 #;;   move.l    a4,a6                  # [206]
@@ -724,24 +724,24 @@ IAMICE6:
 	jne      IAMICE6
 IAMICE7:
 #;;   movem.l   (sp)+,d0-d7/a0-a6      # [255]
-	popl     %ebx
-	popl     %edx
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     %esi
-	popl     %edi
-	popl     a2_l
-	popl     a3_l
-	popl     a4_l
-	popl     a5_l
-	popl     %ebp
+	pop     ebx
+	pop     edx
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     esi
+	pop     edi
+	pop     a2_l
+	pop     a3_l
+	pop     a4_l
+	pop     a5_l
+	pop     ebp
 #;;   unlk      a3                     # [256]
 	movl     a3_l,%esp
-	popl     a3_l
+	pop     a3_l
 #;;   rts                              # [257]
 	ret      
 IAMIC10:

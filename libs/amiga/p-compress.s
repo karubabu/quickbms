@@ -10,9 +10,9 @@ movl    16(%esp),%eax
 movl    %eax,UI_DecrunchLen
 
 #;;   move.l    d0,-(sp)               # [2]
-	pushl    %ebx
+	push    ebx
 #;;   move.l    a0,-(sp)               # [3]
-	pushl    %esi
+	push    esi
 #;;   bsr.b     upcom                  # [4]
 	call     UPCOM
 #;;   addq.l    #8,sp                  # [5]
@@ -65,22 +65,22 @@ GETLONG:
 	ret      
 UPCOM:
 #;;   link      a5,#-$3c               # [35]
-	pushl    a5_l
+	push    a5_l
 	movl     %esp,a5_l
 	lea      (-0x3c)(%esp),%esp
 #;;   movem.l   d2-d7/a1-a6,-(sp)      # [36]
-	pushl    %ebp
-	pushl    a5_l
-	pushl    a4_l
-	pushl    a3_l
-	pushl    a2_l
-	pushl    %edi
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
+	push    ebp
+	push    a5_l
+	push    a4_l
+	push    a3_l
+	push    a2_l
+	push    edi
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
 #;;   move.l    8(a5),a0               # [37]
 	movl     a5_l,%ecx
 	movl     8(%ecx),%esi
@@ -123,7 +123,7 @@ UPCOM:
 #;;   move.l    #$400,d0               # [57]
 	movl     $0x400,%ebx
 #;;   bsr.w     alcmem                 # [58]
-    push %ebx
+    push ebx
 	call     _malloc
 #;;   move.l    d0,-$2c(a5)            # [59 EQ]
 	movl     a5_l,%ecx
@@ -134,7 +134,7 @@ UPCOM:
 #;;   move.l    #$13ec,d0              # [62]
 	movl     $0x13ec,%ebx
 #;;   bsr.w     alcmem                 # [63]
-    push %ebx
+    push ebx
 	call     _malloc
 #;;   move.l    d0,-$14(a5)            # [64 EQ]
 	movl     a5_l,%ecx
@@ -145,7 +145,7 @@ UPCOM:
 #;;   move.l    #$1000,d0              # [67]
 	movl     $0x1000,%ebx
 #;;   bsr.w     alcmem                 # [68]
-    push %ebx
+    push ebx
 	call     _malloc
 #;;   move.l    d0,-12(a5)             # [69 EQ]
 	movl     a5_l,%ecx
@@ -184,41 +184,41 @@ UPCOM1:
 	movl     a5_l,%ecx
 	movl     -12(%ecx),%edi
 #;;   bsr.w     fremem                 # [86]
-    push %edi
+    push edi
 	call     _free
 UPCOM2:
 #;;   move.l    -$14(a5),a1            # [88]
 	movl     a5_l,%ecx
 	movl     -0x14(%ecx),%edi
 #;;   bsr.w     fremem                 # [89]
-    push %edi
+    push edi
 	call     _free
 UPCOM3:
 #;;   move.l    -$2c(a5),a1            # [91]
 	movl     a5_l,%ecx
 	movl     -0x2c(%ecx),%edi
 #;;   bsr.w     fremem                 # [92]
-    push %edi
+    push edi
 	call     _free
 UPCOM4:
 #;;   move.l    d4,d0                  # [94]
 	movl     d4_l,%ebx
 #;;   movem.l   (sp)+,d2-d7/a1-a6      # [95]
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     %edi
-	popl     a2_l
-	popl     a3_l
-	popl     a4_l
-	popl     a5_l
-	popl     %ebp
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     edi
+	pop     a2_l
+	pop     a3_l
+	pop     a4_l
+	pop     a5_l
+	pop     ebp
 #;;   unlk      a5                     # [96]
 	movl     a5_l,%esp
-	popl     a5_l
+	pop     a5_l
 #;;   rts                              # [97]
 	ret      
 UPCOM5:
@@ -226,7 +226,7 @@ UPCOM5:
 	movl     a5_l,%ecx
 	movl     %esp,-0x3c(%ecx)
 #;;   move.l    d2,-(sp)               # [100]
-	pushl    d2_l
+	push    d2_l
 #;;   move.l    -$14(a5),a4            # [101]
 	movl     -0x14(%ecx),%eax
 	movl     %eax,a4_l
@@ -389,7 +389,7 @@ UPCOM7:
 	movl     %eax,a4_l
 	lea      0xc60(%ecx),%eax
 #;;   move.l    (sp)+,d0               # [169 EQ]
-	popl     %ebx
+	pop     ebx
 	testl    %ebx,%ebx
 	movl     %eax,a3_l
 #;;   beq.b     upcom7a                # [170]
@@ -465,7 +465,7 @@ UPCOM11:
 	lea      -1(%ecx),%cx
 	movw     %cx,d5_w
 	lea      1(%ecx),%cx
-	jcxz     _PA_170_
+	jecxz     _PA_170_
 	jmp      UPCOM11
 _PA_170_:         
 #;;   bmi.b     upcom14                # [198]
@@ -490,7 +490,7 @@ UPCOM13:
 	lea      -1(%ecx),%cx
 	movw     %cx,d5_w
 	lea      1(%ecx),%cx
-	jcxz     _PA_176_
+	jecxz     _PA_176_
 	jmp      UPCOM11
 _PA_176_:         
 #;;   bpl.b     upcom12                # [205]
@@ -643,14 +643,14 @@ UPCOM23:
 #;;   moveq     #0,d3                  # [252]
 	movl     $0,d3_l
 #;;   move.l    d6,-(sp)               # [253]
-	pushl    d6_l
+	push    d6_l
 #;;   bsr.w     upcom33                # [254]
 	call     UPCOM33
 #;;   move.w    d6,d3                  # [255]
 	movw     d6_w,%ax
 	movw     %ax,d3_w
 #;;   move.l    (sp)+,d6               # [256]
-	popl     d6_l
+	pop     d6_l
 #;;   swap      d3                     # [257]
 	roll     $16,d3_l
 #;;   neg.w     d5                     # [258]
@@ -699,7 +699,7 @@ UPCOM25:
 	movw     d3_w,%ax
 	addw     %ax,d3_w
 #;;   pea       (a5)                   # [277]
-	pushl    a5_l
+	push    a5_l
 #;;   move.l    -$14(a6),a5            # [278]
 	movl     -0x14(%ebp),%eax
 	movl     %eax,a5_l
@@ -707,7 +707,7 @@ UPCOM25:
 	movl     a5_l,%ecx
 	lea      0x1194(%ecx),%eax
 #;;   move.l    (sp)+,a5               # [280]
-	popl     a5_l
+	pop     a5_l
 	movl     %eax,a2_l
 #;;   move.w    (a2,d3.w),d3           # [281]
 	movswl   d3_w,%ecx
@@ -835,7 +835,7 @@ UPCOM32:
 	ret      
 UPCOM33:
 #;;   pea       (a0)                   # [330]
-	pushl    %esi
+	push    esi
 #;;   move.l    -$1c(a6),a0            # [331]
 	movl     -0x1c(%ebp),%esi
 #;;   add.l     -$28(a6),a0            # [332]
@@ -851,12 +851,12 @@ UPCOM33:
 	movb     1(%esi),%al
 	movb     %al,d6_b
 #;;   move.l    (sp)+,a0               # [337]
-	popl     %esi
+	pop     esi
 #;;   rts                              # [338]
 	ret      
 UPCOM34:
 #;;   pea       (a0)                   # [340]
-	pushl    %esi
+	push    esi
 #;;   move.l    -8(a6),d0              # [341]
 	movl     -8(%ebp),%ebx
 #;;   sub.l     d0,a1                  # [342]
@@ -886,7 +886,7 @@ UPCOM35:
 #;;   clr.l     -8(a6)                 # [351]
 	movl     $0,-8(%ebp)
 #;;   move.l    (sp)+,a0               # [352]
-	popl     %esi
+	pop     esi
 #;;   rts                              # [353]
 	ret      
 UPCOM36:
@@ -898,11 +898,11 @@ UPCOM36:
 	ret      
 UPCOM37:
 #;;   movem.l   d4-d7/a3,-(sp)         # [359]
-	pushl    a3_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
+	push    a3_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
 #;;   move.l    -$2c(a5),a3            # [360]
 	movl     a5_l,%ecx
 	movl     -0x2c(%ecx),%eax
@@ -972,21 +972,21 @@ UPCOM42:
 	jmp      UPCOM38
 UPCOM43:
 #;;   movem.l   (sp)+,d4-d7/a3         # [391]
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a3_l
 #;;   rts                              # [392]
 	ret      
 UPCOM44:
 #;;   movem.l   d2/d4-d7/a2,-(sp)      # [394]
-	pushl    a2_l
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d2_l
+	push    a2_l
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d2_l
 #;;   move.l    -$2c(a5),a2            # [395]
 	movl     a5_l,%ecx
 	movl     -0x2c(%ecx),%eax
@@ -1042,12 +1042,12 @@ UPCOM46:
 #;;   move.l    d5,d0                  # [416]
 	movl     d5_l,%ebx
 #;;   movem.l   (sp)+,d2/d4-d7/a2      # [417]
-	popl     d2_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     a2_l
+	pop     d2_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     a2_l
 #;;   rts                              # [418]
 	movl %ebx,%eax
 	ret      

@@ -182,7 +182,7 @@ UMAXP6:
 #;;   bcs.b     umaxp8                 # [63]
 	jc       UMAXP8
 #;;   jmp       (a1)                   # [64]
-	jmp      *%edi
+	jmp      *edi
 UMAXP7:
 #;;   rts                              # [66]
 	ret      

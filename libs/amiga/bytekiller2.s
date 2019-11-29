@@ -13,21 +13,21 @@ _ByteKiller2:
     movl %eax,Temp
 
 #;;   movem.l   d0-d7/a0-a6,-(a7)      # [1]
-	pushl    %ebp
-	pushl    a5_l
-	pushl    a4_l
-	pushl    a3_l
-	pushl    a2_l
-	pushl    %edi
-	pushl    %esi
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
-	pushl    %edx
-	pushl    %ebx
+	push    ebp
+	push    a5_l
+	push    a4_l
+	push    a3_l
+	push    a2_l
+	push    edi
+	push    esi
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
+	push    edx
+	push    ebx
 #;;   lea.l     Temp,a6                # [2]
 	movl     $Temp,%ebp
 #;;   lea.l     Source,a0              # [3]
@@ -185,21 +185,21 @@ lbC000878:
 #;;   blt.s     lbC0007F8              # [64]
 	jl       lbC0007F8
 #;;   movem.l   (a7)+,d0-d7/a0-a6      # [65]
-	popl     %ebx
-	popl     %edx
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
-	popl     %esi
-	popl     %edi
-	popl     a2_l
-	popl     a3_l
-	popl     a4_l
-	popl     a5_l
-	popl     %ebp
+	pop     ebx
+	pop     edx
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
+	pop     esi
+	pop     edi
+	pop     a2_l
+	pop     a3_l
+	pop     a4_l
+	pop     a5_l
+	pop     ebp
 #;;   rts                              # [66]
 	ret      
 lbC0008A0:

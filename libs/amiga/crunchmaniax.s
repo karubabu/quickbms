@@ -314,11 +314,11 @@ _crunchmania_FastDecruncherHuff:
     
 
 #;;   move.l    a4,-(sp)               # [152]
-	pushl    a4_l
+	push    a4_l
 #;;   move.l    #$4e0,d0               # [153]
 	movl     $0x4e0,%ebx
 #;;   bsr.w     alcmem                 # [154]
-    pushl %ebx
+    push ebx
 	call     _malloc
 #;;   move.l    d0,UI_Temp(a4)         # [155 EQ]
 	movl     a4_l,%ecx
@@ -511,12 +511,12 @@ _PA_187_:
 	jne      FDEHU1
 FDEHU6a:
 #;;   move.l    (sp)+,a4               # [231]
-	popl     a4_l
+	pop     a4_l
 #;;   move.l    UI_Temp(a4),a1         # [232]
 	movl     a4_l,%ecx
 	movl     UI_Temp,%edi
 #;;   bsr.w     fremem                 # [233]
-    pushl %edi
+    push edi
 	call     _free
 #;;   clr.l     UI_Temp(a4)            # [234]
 	movl     a4_l,%ecx
@@ -621,12 +621,12 @@ FDEHU13:
 	.p2align	2
 FDEHU14:
 #;;   movem.l   d1-d5/a3,-(sp)         # [274]
-	pushl    a3_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
-	pushl    %edx
+	push    a3_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
+	push    edx
 #;;   moveq     #4,d1                  # [275]
 	movl     $4,%edx
 #;;   bsr.b     fdehu11                # [276]
@@ -683,24 +683,24 @@ FDEHU17:
 	cmpw     $-1,d5_w
 	jne      FDEHU17
 #;;   movem.l   (sp)+,d1-d5/a3         # [296]
-	popl     %edx
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     a3_l
+	pop     edx
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     a3_l
 #;;   rts                              # [297]
 	ret      
 FDEHU18:
 #;;   movem.l   d0-d7,-(sp)            # [299]
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d5_l
-	pushl    d4_l
-	pushl    d3_l
-	pushl    d2_l
-	pushl    %edx
-	pushl    %ebx
+	push    d7_l
+	push    d6_l
+	push    d5_l
+	push    d4_l
+	push    d3_l
+	push    d2_l
+	push    edx
+	push    ebx
 #;;   clr.w     (a4)+                  # [300]
 	movl     a4_l,%ecx
 	addl     $2,a4_l
@@ -752,19 +752,19 @@ FDEHU19:
 	cmpw     $-1,d7_w
 	jne      FDEHU19
 #;;   movem.l   (sp)+,d0-d7            # [317]
-	popl     %ebx
-	popl     %edx
-	popl     d2_l
-	popl     d3_l
-	popl     d4_l
-	popl     d5_l
-	popl     d6_l
-	popl     d7_l
+	pop     ebx
+	pop     edx
+	pop     d2_l
+	pop     d3_l
+	pop     d4_l
+	pop     d5_l
+	pop     d6_l
+	pop     d7_l
 #;;   rts                              # [318]
 	ret      
 CRMSDEC:
 #;;   jsr       (a6)                   # [327]
-	call     *%ebp
+	call     *ebp
 #;;   move.l    UI_DecrunchLen(a4),d1  # [329]
 	movl     a4_l,%ecx
 	movl     UI_DecrunchLen,%edx
@@ -854,15 +854,15 @@ CRMPASO:
 	ret      
 CRMDCOD:
 #;;   movem.l   d0-d3/a0-a4,-(sp)      # [384]
-	pushl    a4_l
-	pushl    a3_l
-	pushl    a2_l
-	pushl    %edi
-	pushl    %esi
-	pushl    d3_l
-	pushl    d2_l
-	pushl    %edx
-	pushl    %ebx
+	push    a4_l
+	push    a3_l
+	push    a2_l
+	push    edi
+	push    esi
+	push    d3_l
+	push    d2_l
+	push    edx
+	push    ebx
 #;;   move.l    sp,a2                  # [385]
 	movl     %esp,a2_l
 #;;   lea       -256(sp),sp            # [386]
@@ -966,14 +966,14 @@ CRMDCO6:
 #;;   lea       256(sp),sp             # [423]
 	lea      256(%esp),%esp
 #;;   movem.l   (sp)+,d0-d3/a0-a4      # [424]
-	popl     %ebx
-	popl     %edx
-	popl     d2_l
-	popl     d3_l
-	popl     %esi
-	popl     %edi
-	popl     a2_l
-	popl     a3_l
-	popl     a4_l
+	pop     ebx
+	pop     edx
+	pop     d2_l
+	pop     d3_l
+	pop     esi
+	pop     edi
+	pop     a2_l
+	pop     a3_l
+	pop     a4_l
 #;;   rts                              # [425]
 	ret      

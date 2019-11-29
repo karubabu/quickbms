@@ -67,12 +67,12 @@ _UTUC:
 #;;   eor.l     #$9c978d97,d6          # [24]
 	xorl     $0x9c978d97,d6_l
 #;;   movem.l   d3/d6-d7/a1-a2/a5,-(sp) # [26]
-	pushl    a5_l
-	pushl    a2_l
-	pushl    %edi
-	pushl    d7_l
-	pushl    d6_l
-	pushl    d3_l
+	push    a5_l
+	push    a2_l
+	push    edi
+	push    d7_l
+	push    d6_l
+	push    d3_l
 #;;   sub.l     a0,a0                  # [27]
 	subl     %esi,%esi
 #;;   st        UI_Temp(a4)            # [28]
@@ -84,18 +84,18 @@ _UTUC:
 	movl     a4_l,%ecx
 	movl     $0,UI_Temp
 #;;   movem.l   (sp)+,d3/d6-d7/a1-a2/a5 # [31]
-	popl     d3_l
-	popl     d6_l
-	popl     d7_l
-	popl     %edi
-	popl     a2_l
-	popl     a5_l
+	pop     d3_l
+	pop     d6_l
+	pop     d7_l
+	pop     edi
+	pop     a2_l
+	pop     a5_l
 #;;   move.l    a0,d0                  # [33]
 	movl     %esi,%ebx
 #;;   move.l    d0,UI_DecrunchLen(a4)  # [34]
 	movl     %ebx,UI_DecrunchLen
 #;;   bsr.w     alcdmemj               # [35]
-    push %ebx
+    push ebx
 	call     _malloc
 #;;   move.l    d0,UI_DecrunchAdr(a4)  # [36 EQ]
 	movl     a4_l,%ecx

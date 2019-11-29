@@ -37,7 +37,7 @@ _UCMAT:
 	addl     UI_DecrunchLen,%ebp
 #;;   pea       ucmat13(pc)            # [23]
 	lea      UCMAT13,%eax
-	pushl    %eax
+	push    eax
 #;;   moveq     #-$80,d3               # [24]
 	movl     $-0x80,d3_l
 UCMAT1:

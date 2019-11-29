@@ -383,7 +383,7 @@ MECRUOB:
 #;;   move.l    d1,d0                  # [151]
 	movl     %edx,%ebx
 #;;   bsr.w     alcdmem                # [152]
-    push %ebx
+    push     ebx
 	call     _malloc
 #;;   move.l    d0,UI_DecrunchAdr(a4)  # [153 EQ]
 	movl     a4_l,%ecx
@@ -497,7 +497,7 @@ MECROB5:
 	movl     a4_l,%ecx
 	movl     UI_Temp,%edi
 #;;   bsr.w     fremem                 # [195]
-    push %edi
+    push edi
 	call     _free
 #;;   clr.l     UI_Temp(a4)            # [196]
 	movl     a4_l,%ecx
@@ -507,7 +507,7 @@ MECROB6:
 	ret      
 MECROB7:
 #;;   move.l    a0,-(sp)               # [199]
-	pushl    %esi
+	push    esi
 #;;   move.l    a5,a0                  # [200]
 	movl     a5_l,%esi
 MECROB8:
@@ -525,7 +525,7 @@ MECROB8:
 	je       MECRO10
 MECROB9:
 #;;   move.l    (sp)+,a0               # [206]
-	popl     %esi
+	pop     esi
 #;;   rts                              # [207]
 	ret      
 MECRO10:
